@@ -54,6 +54,12 @@ namespace MyHomeWork
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.ordersTableAdapter1 = new LinqLabs.DataSet1TableAdapters.OrdersTableAdapter();
+            this.dataSet11 = new LinqLabs.DataSet1();
+            this.order_DetailsTableAdapter1 = new LinqLabs.DataSet1TableAdapters.Order_DetailsTableAdapter();
+            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new LinqLabs.DataSet1TableAdapters.TableAdapterManager();
+            this.order_DetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -67,6 +73,9 @@ namespace MyHomeWork
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_DetailsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -82,7 +91,7 @@ namespace MyHomeWork
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(880, 451);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(880, 431);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // lblDetails
@@ -107,7 +116,7 @@ namespace MyHomeWork
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 62;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(870, 401);
+            this.dataGridView2.Size = new System.Drawing.Size(870, 381);
             this.dataGridView2.TabIndex = 100;
             // 
             // splitContainer2
@@ -125,7 +134,7 @@ namespace MyHomeWork
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer2.Size = new System.Drawing.Size(1531, 455);
+            this.splitContainer2.Size = new System.Drawing.Size(1531, 435);
             this.splitContainer2.SplitterDistance = 642;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
@@ -143,7 +152,7 @@ namespace MyHomeWork
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(638, 451);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(638, 431);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblMaster
@@ -168,7 +177,7 @@ namespace MyHomeWork
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(628, 401);
+            this.dataGridView1.Size = new System.Drawing.Size(628, 381);
             this.dataGridView1.TabIndex = 71;
             // 
             // splitContainer1
@@ -182,6 +191,7 @@ namespace MyHomeWork
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label9);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
@@ -201,7 +211,7 @@ namespace MyHomeWork
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1531, 801);
-            this.splitContainer1.SplitterDistance = 341;
+            this.splitContainer1.SplitterDistance = 361;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 136;
             // 
@@ -213,7 +223,7 @@ namespace MyHomeWork
             this.label3.Location = new System.Drawing.Point(949, 261);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(300, 20);
+            this.label3.Size = new System.Drawing.Size(219, 14);
             this.label3.TabIndex = 135;
             this.label3.Text = "LINQ to Northwind DataSet - Products";
             // 
@@ -225,7 +235,7 @@ namespace MyHomeWork
             this.label9.Location = new System.Drawing.Point(937, 134);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 20);
+            this.label9.Size = new System.Drawing.Size(27, 14);
             this.label9.TabIndex = 134;
             this.label9.Text = "年:";
             // 
@@ -237,7 +247,7 @@ namespace MyHomeWork
             this.label4.Location = new System.Drawing.Point(57, 22);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(166, 20);
+            this.label4.Size = new System.Drawing.Size(125, 14);
             this.label4.TabIndex = 103;
             this.label4.Text = "LINQ to FileInfo[]";
             // 
@@ -251,6 +261,7 @@ namespace MyHomeWork
             this.button6.TabIndex = 133;
             this.button6.Text = "All 訂單 ";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button14
             // 
@@ -274,6 +285,7 @@ namespace MyHomeWork
             this.button1.TabIndex = 70;
             this.button1.Text = "     某年訂單 / 訂單明細";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -285,6 +297,7 @@ namespace MyHomeWork
             this.button2.TabIndex = 72;
             this.button2.Text = "     FileInfo[]   - 2017 Created - oerder ";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button13
             // 
@@ -307,7 +320,7 @@ namespace MyHomeWork
             this.comboBox1.Location = new System.Drawing.Point(989, 130);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(176, 28);
+            this.comboBox1.Size = new System.Drawing.Size(176, 21);
             this.comboBox1.TabIndex = 125;
             // 
             // button12
@@ -332,6 +345,7 @@ namespace MyHomeWork
             this.button4.TabIndex = 124;
             this.button4.Text = "     FileInfo[]   - 大檔案";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox1
             // 
@@ -340,7 +354,7 @@ namespace MyHomeWork
             this.textBox1.Location = new System.Drawing.Point(1056, 294);
             this.textBox1.Margin = new System.Windows.Forms.Padding(5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 31);
+            this.textBox1.Size = new System.Drawing.Size(180, 23);
             this.textBox1.TabIndex = 98;
             this.textBox1.Text = "10";
             // 
@@ -352,7 +366,7 @@ namespace MyHomeWork
             this.label1.Location = new System.Drawing.Point(937, 298);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(67, 14);
             this.label1.TabIndex = 99;
             this.label1.Text = "一頁幾筆";
             // 
@@ -364,7 +378,7 @@ namespace MyHomeWork
             this.label5.Location = new System.Drawing.Point(524, 34);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(287, 20);
+            this.label5.Size = new System.Drawing.Size(207, 14);
             this.label5.TabIndex = 104;
             this.label5.Text = "LINQ to Northwind DataSet - Orders";
             // 
@@ -376,7 +390,7 @@ namespace MyHomeWork
             this.label2.Location = new System.Drawing.Point(574, 519);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 20);
+            this.label2.Size = new System.Drawing.Size(41, 14);
             this.label2.TabIndex = 135;
             this.label2.Text = "Year:";
             // 
@@ -384,9 +398,40 @@ namespace MyHomeWork
             // 
             this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
+            // ordersTableAdapter1
+            // 
+            this.ordersTableAdapter1.ClearBeforeFill = true;
+            // 
+            // dataSet11
+            // 
+            this.dataSet11.DataSetName = "DataSet1";
+            this.dataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // order_DetailsTableAdapter1
+            // 
+            this.order_DetailsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // ordersBindingSource
+            // 
+            this.ordersBindingSource.DataMember = "Orders";
+            this.ordersBindingSource.DataSource = this.dataSet11;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.Order_DetailsTableAdapter = this.order_DetailsTableAdapter1;
+            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter1;
+            this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = LinqLabs.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // order_DetailsBindingSource
+            // 
+            this.order_DetailsBindingSource.DataMember = "Order Details";
+            this.order_DetailsBindingSource.DataSource = this.dataSet11;
+            // 
             // Frm作業_1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1531, 801);
             this.Controls.Add(this.splitContainer1);
@@ -409,6 +454,9 @@ namespace MyHomeWork
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_DetailsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +488,11 @@ namespace MyHomeWork
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private LinqLabs.DataSet1TableAdapters.OrdersTableAdapter ordersTableAdapter1;
+        private LinqLabs.DataSet1 dataSet11;
+        private LinqLabs.DataSet1TableAdapters.Order_DetailsTableAdapter order_DetailsTableAdapter1;
+        private System.Windows.Forms.BindingSource ordersBindingSource;
+        private LinqLabs.DataSet1TableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingSource order_DetailsBindingSource;
     }
 }
