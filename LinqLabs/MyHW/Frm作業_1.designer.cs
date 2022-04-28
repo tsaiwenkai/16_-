@@ -60,6 +60,8 @@ namespace MyHomeWork
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new LinqLabs.DataSet1TableAdapters.TableAdapterManager();
             this.order_DetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.productsTableAdapter1 = new LinqLabs.DataSet1TableAdapters.ProductsTableAdapter();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -179,7 +181,7 @@ namespace MyHomeWork
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(628, 381);
             this.dataGridView1.TabIndex = 71;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // splitContainer1
             // 
@@ -193,6 +195,7 @@ namespace MyHomeWork
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label9);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
@@ -336,6 +339,7 @@ namespace MyHomeWork
             this.button12.TabIndex = 97;
             this.button12.Text = "上一頁";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button4
             // 
@@ -432,6 +436,22 @@ namespace MyHomeWork
             this.order_DetailsBindingSource.DataMember = "Order Details";
             this.order_DetailsBindingSource.DataSource = this.dataSet11;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button3.Location = new System.Drawing.Point(664, 275);
+            this.button3.Margin = new System.Windows.Forms.Padding(5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(245, 42);
+            this.button3.TabIndex = 136;
+            this.button3.Text = "Products";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // productsTableAdapter1
+            // 
+            this.productsTableAdapter1.ClearBeforeFill = true;
+            // 
             // Frm作業_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -497,5 +517,7 @@ namespace MyHomeWork
         private System.Windows.Forms.BindingSource ordersBindingSource;
         private LinqLabs.DataSet1TableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingSource order_DetailsBindingSource;
+        private System.Windows.Forms.Button button3;
+        private LinqLabs.DataSet1TableAdapters.ProductsTableAdapter productsTableAdapter1;
     }
 }
