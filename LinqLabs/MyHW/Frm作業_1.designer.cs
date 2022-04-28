@@ -179,6 +179,7 @@ namespace MyHomeWork
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(628, 381);
             this.dataGridView1.TabIndex = 71;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // splitContainer1
             // 
@@ -206,6 +207,7 @@ namespace MyHomeWork
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -415,6 +417,7 @@ namespace MyHomeWork
             // 
             this.ordersBindingSource.DataMember = "Orders";
             this.ordersBindingSource.DataSource = this.dataSet11;
+            this.ordersBindingSource.CurrentChanged += new System.EventHandler(this.ordersBindingSource_CurrentChanged);
             // 
             // tableAdapterManager
             // 
@@ -431,12 +434,12 @@ namespace MyHomeWork
             // 
             // Frm作業_1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1531, 801);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.label2);
-            this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Frm作業_1";
             this.Text = "Frm作業_1";

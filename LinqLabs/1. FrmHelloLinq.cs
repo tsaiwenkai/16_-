@@ -169,5 +169,11 @@ namespace Starter
                     select da;
             dataGridView1.DataSource = q.ToList();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //var q =a.Where
+        }
     }
 }

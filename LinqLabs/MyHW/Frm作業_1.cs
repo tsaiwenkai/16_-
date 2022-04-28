@@ -16,6 +16,7 @@ namespace MyHomeWork
         {
             InitializeComponent();
             ordersTableAdapter1.Fill(dataSet11.Orders);
+            order_DetailsTableAdapter1.Fill(dataSet11.Order_Details);
             Creadcombobox();  
         }
 
@@ -91,8 +92,27 @@ namespace MyHomeWork
                     where da.OrderDate.Year == (int)comboBox1.SelectedValue
                     select da;
             dataGridView1.DataSource = q.ToList();
-            int position = ordersBindingSource.Position;
-            dataGridView2.DataSource = dataSet11.Orders[position].GetOrder_DetailsRows();
+          
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int point = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            var q = from da in dataSet11.Order_Details
+                    where da.OrderID == point
+                    select da;
+
+            dataGridView2.DataSource = q.ToList();
+        }
+
+        private void ordersBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
 
         }
     }
