@@ -14,6 +14,7 @@ namespace Starter
         public FrmLangForLINQ()
         {
             InitializeComponent();
+            productsTableAdapter1.Fill(dataSet11.Products);
            
         }
 
@@ -147,6 +148,266 @@ namespace Starter
             result = del(8);
             MessageBox.Show(result.ToString());
 
+            //=========================
+            //C#2.0 匿名方法
+            del = delegate (int x)
+             {
+                 return x > 5;
+             };
+            result = del(6);
+            MessageBox.Show(result.ToString());
+
+
+            //=========================
+            //C#3.0 匿名方法 lambda
+            del = n => n > 5;
+            result = del(4);
+            MessageBox.Show(result.ToString());
+
         }
+        //========================================================
+        //做一個List方法 使用委派當參數
+
+       //List<int> mywher(int[] nm, MYdelegate del) => nm.Where(n => del(n)).ToList();
+        List<int> Mywhere(int[]num ,MYdelegate del)
+        {
+            //new 一個list
+            List<int> list = new List<int>();
+            
+            //迴圈把陣列裡的元素帶進list
+            foreach(int n in num)
+            {
+                //條件  帶入先前作的委派當作布林直
+                if (del(n))
+                {
+                    list.Add(n);
+                }         
+            }
+            return list;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            //宣告一個陣列
+            int[] num = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //宣告一個list來裝執行方法後的原素
+            List<int> result_list =   Mywhere(num,test);
+            //foreach(int n in result_list)
+            //{
+            //    listBox1.Items.Add(n);
+            //}
+            //=================================
+
+
+            List<int> list = Mywhere(num, n => n > 5);
+
+            //在新作兩個list來裝使用方法後的回傳list
+            List<int> oddlist = Mywhere(num, n=>n % 2 == 1);
+                                                                  //lambda寫法 (陣列,匿名方法)  
+            List<int> evenlist = Mywhere(num, n => n % 2 == 0);
+            foreach (int n in oddlist)
+            {
+                listBox1.Items.Add(n);
+            }
+            foreach (int n in evenlist)
+            {
+                listBox2.Items.Add(n);
+            }
+        }
+        //===============================================
+        IEnumerable<int> MyItterator(int[] num, MYdelegate del)
+        {
+
+            foreach (int n in num)
+            {
+                if (del(n))
+                {
+                    yield return n;
+                }          
+            }
+        }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            int[] num = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            IEnumerable<int> q= MyItterator(num, n => n > 5);
+            //IEnumerable<int> q = (num, n => n > 5);
+            foreach (int n in q)
+            {
+                listBox1.Items.Add(n);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int[] num = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            var q = num.Where(n => n > 5);
+            //foreach(int n in q)
+            //{
+            //    listBox1.Items.Add(n);
+            //}
+
+            //===================
+            string[] s = { "aaa", "bbbb", "ccccc" };
+
+            var q2 = s.Where(w => w.Length > 3)/*.Select(x=>x.Length).ToList()*/;
+
+            foreach(string x in q2)
+            {
+                listBox2.Items.Add(x);
+            }
+            //==============================
+            //來源                        條件                          出來會是dataset所以要用select轉成型別最後是變成list
+            var q3 = dataSet11.Products.Where(x => x.UnitPrice > 30); //.Select(x=>x.UnitPrice).ToList();
+            dataGridView1.DataSource = q3.ToList();
+
+            //foreach(var y in q3)
+            //{
+            //    listBox1.Items.Add(y);
+            //}
+
+        }
+          
+
+        private void button45_Click(object sender, EventArgs e)
+        {
+            var x = 0;
+            var y = "asdasda";
+            var z = dataSet11.Products;
+        }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+            Mypoint mp = new Mypoint();
+            mp.p_1 = 100;
+            int w = mp.p_1;
+
+            //MessageBox.Show(w.ToString());
+
+            //Mypoint mpt = new Mypoint("aaa");
+            //Mypoint mpt1 = new Mypoint(100);
+            //Mypoint mpt2 = new Mypoint(100,200);
+            //===================================================
+
+            List<Mypoint> pt = new List<Mypoint>();
+            pt.Add(mp);
+            pt.Add(new Mypoint("aaa"));
+            pt.Add(new Mypoint(100));
+            pt.Add(new Mypoint(100, 200));
+
+
+
+            pt.Add(new Mypoint { p_1 = 1, p_2 = 1, feild1 = "aaaaaaa", feild2 = "dasdasda" });
+            pt.Add(new Mypoint { p_1 = 1,});
+            pt.Add(new Mypoint { p_1 = 1, p_2 = 3});
+            //dataGridView1.DataSource = pt;
+            //=====================================================
+            List<Mypoint> list = new List<Mypoint>
+            {
+                new Mypoint { p_1 = 1, p_2 = 1, feild1 = "aaaaaaa", feild2 = "dasdasda" },
+                new Mypoint { p_1 = 2, p_2 = 2, feild1 = "aaaaaaasda", feild2 = "dasdasdasda" },
+                new Mypoint { p_1 =3, p_2 = 3, feild1 = "aaaaaaaaaa", feild2 = "dasdasdasdaa" },
+                new Mypoint { p_1 =4, p_2 =4, feild1 = "aaaaaaaaaaaaaa", feild2 = "dasdasdaaaaaaaa" },
+
+             };
+            //dataGridView2.DataSource = list;
+            //=====================================================
+        }
+
+        private void button43_Click(object sender, EventArgs e)
+        {
+            //因為匿名型別所以沒辦法設定變數的型別 故使用var
+            var x = new { p1 = 55, p2 = 88 };
+            var y = new { p1 = 55, p2 = 88 };
+            var z = new { UserName = "sasdasda", Password = "asdasd" };
+            listBox1.Items.Add(x.GetType());
+            listBox1.Items.Add(y.GetType());
+            listBox1.Items.Add(z.GetType());
+            //=======================================
+            int[] num = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            //var q = from n in num
+            //        where n > 5
+            //        select new { N = n, S = n * n, C = n * n * n };
+
+            dataGridView1.DataSource = num.Where(n => n > 5).Select(n=>new { N = n, S = n * n, C = n * n * n }).ToList();
+
+            //dataGridView1.DataSource = q.ToList();
+
+            //===========================================
+            //var q = from n in dataSet11.Products
+            //        where n.UnitPrice > 30
+            //        select new { ID = n.ProductID, 產品名稱 = n.ProductName, n.UnitPrice, n.UnitsInStock, Totelprice = $"{n.UnitPrice * n.UnitsInStock :C2}" };
+            //dataGridView2.DataSource = q.ToList();
+            dataGridView2.DataSource= dataSet11.Products.
+                Where(n => n.UnitPrice > 30).Select(n => new { ID = n.ProductID, 產品名稱 = n.ProductName, n.UnitPrice, n.UnitsInStock, Totelprice = $"{n.UnitPrice * n.UnitsInStock:C2}" }).ToList();
+        }
+
+
+       
+        private void button32_Click(object sender, EventArgs e)
+        {
+            string s1 = "asdasda";
+            int n = s1.MyWordcount();
+            MessageBox.Show("Wordcount=" + n);
+            string s2 = "aasdasdasdasdasda";
+            n = s2.MyWordcount();
+            MessageBox.Show("Wordcount=" + n);
+            //===============================
+            string s = "asdasd";
+            char c = s.Chars(3);
+            MessageBox.Show("Char=" + c);
+
+        }
+    }
+}
+public class Mypoint
+{
+    public Mypoint()
+    {
+
+    }
+    public Mypoint(int p1)
+    {
+        p_1 = p1;
+    }
+    public Mypoint( int p1, int p2)
+    {
+        p_1 = p1;
+        p_2 = p2;
+    }
+    public Mypoint(string feild1)
+    {
+
+    }
+
+    public string feild1 = "1111",feild2="22222";
+    private int m_p1;
+    public int p_1
+    {
+        get
+        {
+            //m_p1 = m_p1 + 100;
+            return m_p1;
+        }
+        set
+        {
+            //value = value - 50;
+            m_p1 = value;
+        }
+    }
+    public int p_2 { get; set; }
+}
+
+//自訂義擴充方法    自訂一個static的類別與方法  方法內的參數一定要this開頭
+public static class MyStringExtend
+{
+    public static int MyWordcount(this string s)
+    {
+        return s.Length;
+    }
+
+    public static char Chars(this string s,int index)
+    {
+        return s[index];
     }
 }
