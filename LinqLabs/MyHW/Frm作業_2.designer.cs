@@ -53,6 +53,8 @@ namespace MyHomeWork
             this.button11 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.adWdataset1 = new LinqLabs.ADWdataset();
+            this.productPhotoTableAdapter1 = new LinqLabs.ADWdatasetTableAdapters.ProductPhotoTableAdapter();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -66,6 +68,7 @@ namespace MyHomeWork
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adWdataset1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -147,6 +150,7 @@ namespace MyHomeWork
             this.dataGridView1.RowTemplate.Height = 74;
             this.dataGridView1.Size = new System.Drawing.Size(599, 467);
             this.dataGridView1.TabIndex = 71;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // splitContainer2
             // 
@@ -266,6 +270,7 @@ namespace MyHomeWork
             this.button3.TabIndex = 81;
             this.button3.Text = "     區間腳踏車 ";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label7
             // 
@@ -287,6 +292,7 @@ namespace MyHomeWork
             this.button5.TabIndex = 82;
             this.button5.Text = "     某年腳踏車 ";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // dateTimePicker1
             // 
@@ -307,6 +313,7 @@ namespace MyHomeWork
             this.button10.TabIndex = 83;
             this.button10.Text = "     某季腳踏車  ? 有幾筆 ?";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // label3
             // 
@@ -342,6 +349,15 @@ namespace MyHomeWork
             this.label6.TabIndex = 105;
             this.label6.Text = "LINQ to AdventureWorks DataSet";
             // 
+            // adWdataset1
+            // 
+            this.adWdataset1.DataSetName = "ADWdataset";
+            this.adWdataset1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productPhotoTableAdapter1
+            // 
+            this.productPhotoTableAdapter1.ClearBeforeFill = true;
+            // 
             // Frm作業_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -366,6 +382,7 @@ namespace MyHomeWork
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.adWdataset1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -394,5 +411,7 @@ namespace MyHomeWork
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Label label6;
+        private LinqLabs.ADWdataset adWdataset1;
+        private LinqLabs.ADWdatasetTableAdapters.ProductPhotoTableAdapter productPhotoTableAdapter1;
     }
 }
