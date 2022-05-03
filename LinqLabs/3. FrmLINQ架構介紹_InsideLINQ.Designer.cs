@@ -58,6 +58,7 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.productsTableAdapter1 = new LinqLabs.DataSet1TableAdapters.ProductsTableAdapter();
             this.dataSet11 = new LinqLabs.DataSet1();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox7.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             this.groupBox7.AutoSize = true;
             this.groupBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox7.Controls.Add(this.button1);
             this.groupBox7.Controls.Add(this.label8);
             this.groupBox7.Controls.Add(this.button54);
             this.groupBox7.Controls.Add(this.button3);
@@ -482,6 +484,16 @@
             this.dataSet11.DataSetName = "DataSet1";
             this.dataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(212, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 35);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Arrg.";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmLINQ架構介紹_InsideLINQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -558,6 +570,7 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private LinqLabs.DataSet1TableAdapters.ProductsTableAdapter productsTableAdapter1;
         private LinqLabs.DataSet1 dataSet11;
+        private System.Windows.Forms.Button button1;
     }
 }
 
