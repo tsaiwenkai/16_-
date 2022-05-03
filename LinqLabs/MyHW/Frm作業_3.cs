@@ -87,10 +87,5 @@ namespace MyHomeWork
                 }
             }
         }
-
-        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
-        {
-           // dataGridView2.DataSource = files.Where(f => f.CreationTime.Year == (int)sender).ToList();
-        }
     }
 }
