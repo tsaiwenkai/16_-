@@ -108,15 +108,23 @@ namespace LinqLabs
                 .GroupBy(o => o.month).Select(o => new { month = o.Key, total = $"{o.Sum(s => s.total):c2}" }).OrderBy(o => o.total);
             listBox1.Items.Add("那一個月最高: " + q1.First().month);
             listBox1.Items.Add("那一個月最低: " + q1.Last().month);
-
-
+            //===========================================
+            chart1.DataSource = null;
+            chart1.DataSource = q.ToList();
+            chart1.Series[0].XValueMember = "year";
+            chart1.Series[0].YValueMembers = "total";
+            chart1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            //===============================================================
+            chart2.DataSource = null;
+            chart2.DataSource = q1.ToList();
+            chart2.Series[0].XValueMember = "month";
+            chart2.Series[0].YValueMembers = "total";
+            chart2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             // 年度最高銷售金額 年度最低銷售金額
             // 那一年總銷售最好 ? 那一年總銷售最不好 ?
             // 那一個月總銷售最好 ? 那一個月總銷售最不好 ?
             // 每年 總銷售分析 圖
             // 每月 總銷售分析 圖
         }
-
-
     }
 }
